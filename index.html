@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maurício Cabral & Thelma Tonoli - Arquitetura & Interiores</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Mobile-First Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo .highlight {
+            color: #ff6b35;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            gap: 2rem;
+            transition: right 0.3s ease;
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b35;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #ffffff;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Mobile-First Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('capa.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 90%;
+            padding: 0 1rem;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            color: #ff6b35;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero-names {
+            font-weight: 600;
+            display: block;
+            margin-top: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: #ffffff;
+            text-decoration: none;
+            border: 2px solid #ff6b35;
+            border-radius: 0;
+            transition: all 0.4s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background: #ff6b35;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Mobile-First Sections */
+        .section {
+            padding: 4rem 1rem;
+            margin: 0 auto;
+        }
+
+        .section-white {
+            background-color: #fafafa;
+            color: #333333;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .section-white .section-title {
+            color: #333333;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: #ff6b35;
+        }
+
+        /* Mobile-First About Section */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            color: #666666;
+            line-height: 1.8;
+            font-weight: 300;
+            order: 2;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text .highlight {
+            color: #ff6b35;
+            font-weight: 500;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+            height: 300px;
+            width: 100%;
+            max-width: 400px;
+            background: url('sobrenos_arq.jpg');
+            background-size: cover;
+            background-position: center;
+            order: 1;
+        }
+
+        /* Mobile-First Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border-radius: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-white .project-card {
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 550px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:nth-child(1) .project-image {
+            background-image: url('res1.jpg ');
+        }
+
+        .project-card:nth-child(2) .project-image {
+            background-image: url('pisc.jpg');
+        }
+
+        .project-card:nth-child(3) .project-image {
+            background-image: url('res2.jpg');
+        }
+
+        .project-card:nth-child(4) .project-image {
+            background-image: url('res3.jpg');
+        }
+
+        .project-card:nth-child(5) .project-image {
+            background-image: url('res4.jpg');
+        }
+
+        .project-card:nth-child(6) .project-image {
+            background-image: url('ban1.jpg');
+        }
+
+
+        .project-card:nth-child(7) .project-image {
+            background-image: url('res5.jpg');
+        }
+        .project-card:nth-child(8) .project-image {
+            background-image: url('sala1.jpg');
+        }
+        .project-card:nth-child(9) .project-image {
+            background-image: url('sala2.jpg');
+        }
+        .project-card:nth-child(10) .project-image {
+            background-image: url('res6.jpg');
+        }
+        .project-card:nth-child(11) .project-image {
+            background-image: url('res7.jpg');
+        }
+        .project-card:nth-child(12) .project-image {
+            background-image: url('lazer1.jpg');
+        }
+        .project-card:nth-child(13) .project-image {
+            background-image: url('jantar.jpg');
+        }
+        .project-card:nth-child(14) .project-image {
+            background-image: url('lazer2.jpg');
+        }
+        .project-card:nth-child(15) .project-image {
+            background-image: url('res8.jpg');
+        }
+        .project-card:nth-child(16) .project-image {
+            background-image: url('res9.jpg');
+        }
+        .project-card:nth-child(17) .project-image {
+            background-image: url('res10.jpg');
+        }
+        .project-card:nth-child(18) .project-image {
+            background-image: url('res11.jpg');
+        }
+        .project-card:nth-child(19) .project-image {
+            background-image: url('res12.jpg');
+        }
+        .project-card:nth-child(20) .project-image {
+            background-image: url('sala.jpg');
+        }
+        .project-card:nth-child(21) .project-image {
+            background-image: url('salas.jpg');
+        }
+
+
+        .project-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: #333333;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #ff6b35;
+            margin: 4rem 0 2rem 0;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        /* Mobile-First Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: #ffffff;
+            padding: 2rem 1.5rem;
+            border-radius: 0;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #ff6b35;
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-title {
+            color: #333333;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .service-description {
+            color: #666666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Contato Moderno */
+        .contact-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 3rem;
+            background: transparent;
+            color: #333333;
+            text-decoration: none;
+            border: 2px solid #ff6b35;
+            border-radius: 0;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            min-width: 220px;
+            justify-content: center;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-btn:hover {
+            background: #ff6b35;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
+        }
+
+        .contact-btn.whatsapp:hover {
+            background: #25D366;
+            border-color: #25D366;
+        }
+
+        .contact-btn.instagram:hover {
+            background: #E4405F;
+            border-color: #E4405F;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: #666666;
+        }
+
+        .contact-info p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .contact-info strong {
+            color: #ff6b35;
+            font-weight: 500;
+        }
+
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .nav-container {
+                padding: 0 2rem;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-names {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 5rem 2rem;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.5rem;
+            }
+
+            .about-content {
+                flex-direction: row;
+                gap: 4rem;
+            }
+
+            .about-text {
+                order: 1;
+                flex: 1;
+            }
+
+            .about-image {
+                order: 2;
+                flex: 1;
+                height: 400px;
+            }
+
+            .contact-buttons {
+                flex-direction: row;
+                max-width: none;
+                gap: 2rem;
+            }
+
+            .category-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .nav-container {
+                padding: 0 3rem;
+            }
+
+            .nav-menu {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                backdrop-filter: none;
+                flex-direction: row;
+                justify-content: flex-end;
+                gap: 3rem;
+            }
+
+            .nav-link {
+                font-size: 0.95rem;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+
+            .hero-names {
+                font-size: 3rem;
+            }
+
+            .section {
+                padding: 6rem 3rem;
+            }
+
+            .section-title {
+                font-size: 3.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 3rem;
+            }
+
+            .about-content {
+                gap: 6rem;
+            }
+
+            .about-image {
+                height: 500px;
+            }
+
+            .contact-buttons {
+                gap: 3rem;
+            }
+
+            .category-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1400px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 1200px;
+                margin: 2rem auto 0;
+            }
+
+            .services-grid {
+                max-width: 1200px;
+                margin: 2rem auto 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Touch-friendly improvements */
+        .project-card,
+        .service-card,
+        .contact-btn,
+        .cta-button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Loading optimization */
+        .project-image,
+        .about-image,
+        .hero {
+            background-attachment: scroll;
+        }
+
+        /* Improved contrast */
+        .section-white {
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+        }
+
+        /* Better spacing for mobile */
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 0 0.5rem;
+            }
+
+            .section {
+                padding: 3rem 0.5rem;
+            }
+
+            .nav-container {
+                padding: 0 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-names {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .category-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#home" class="logo">
+            MAURÍCIO CABRAL
+            <br> <span class="highlight"></span> THELMA TONOLI
+        </a>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home" class="nav-link" onclick="closeMenu()">Início</a></li>
+            <li><a href="#about" class="nav-link" onclick="closeMenu()">Sobre</a></li>
+            <li><a href="#projects" class="nav-link" onclick="closeMenu()">Projetos</a></li>
+            <li><a href="#services" class="nav-link" onclick="closeMenu()">Serviços</a></li>
+            <li><a href="#contact" class="nav-link" onclick="closeMenu()">Contato</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <div class="hero-subtitle">Portfólio</div>
+        <h1>
+            ARQUITETURA
+            <span class="hero-names">MAURÍCIO CABRAL<br>THELMA TONOLI</span>
+        </h1>
+        <p>Criamos espaços únicos que combinam funcionalidade, estética e inovação. Mais de 30 anos de experiência em arquitetura marcante e contemporânea.</p>
+        <a href="#projects" class="cta-button">Ver Projetos</a>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about" class="section section-white">
+    <h2 class="section-title">Sobre Nós</h2>
+    <div class="about-content">
+        <div class="about-text">
+            <p><strong class="highlight">Maurício Cabral</strong>, natural de Mogi das Cruzes e formado em Arquitetura pela Universidade de Mogi das Cruzes, conheceu sua esposa <strong class="highlight">Thelma Tonoli</strong> quando cursava o 4° ano de faculdade, ela natural de Indaiatuba/SP.</p>
+
+            <p>Após concluírem o curso em 1993 se casaram, e no mesmo ano montaram o escritório <strong class="highlight">"Arquitetura Cabral e Tonoli"</strong>.</p>
+
+            <p>Hoje Maurício e Thelma cuidam das áreas de projetos de arquitetura, design de interiores, decoração e paisagismo, com uma ampla experiência profissional na área de projetos residenciais e comerciais, buscando contemplar uma <strong class="highlight">arquitetura marcante e contemporânea</strong>.</p>
+        </div>
+        <div class="about-image"></div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="section">
+    <h2 class="section-title">Nossos Projetos</h2>
+
+    <!-- <h3 class="category-title">PROJETOS RESIDENCIAIS</h3> -->
+    <div class="projects-grid">
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+        <div class="project-card">
+            <div class="project-image"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="section section-white">
+    <h2 class="section-title">Nossos Serviços</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <h3 class="service-title">Projetos Arquitetônicos</h3>
+            <p class="service-description">Desenvolvimento completo de projetos residenciais e comerciais, desde o estudo preliminar até a execução.</p>
+        </div>
+        <div class="service-card">
+            <h3 class="service-title">Design de Interiores</h3>
+            <p class="service-description">Criação de ambientes funcionais e esteticamente agradáveis, com seleção de mobiliário e decoração.</p>
+        </div>
+        <div class="service-card">
+            <h3 class="service-title">Paisagismo</h3>
+            <p class="service-description">Projetos de paisagismo que integram natureza e arquitetura, criando espaços harmoniosos e sustentáveis.</p>
+        </div>
+        <div class="service-card">
+            <h3 class="service-title">Consultoria</h3>
+            <p class="service-description">Consultoria especializada em viabilidade, reformas e adequações arquitetônicas para diversos tipos de projeto.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contato -->
+<section id="contact" class="section section-white">
+    <h2 class="section-title">Entre em Contato</h2>
+    <div class="contact-content">
+        <div class="contact-buttons">
+            <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20de%20arquitetura." class="contact-btn whatsapp" target="_blank">
+                WhatsApp
+            </a>
+            <a href="https://instagram.com/cabraltonoli" class="contact-btn instagram" target="_blank">
+                Instagram
+            </a>
+        </div>
+    </div>
+    <div class="contact-info">
+        <p><strong>Endereço:</strong> Mogi das Cruzes, São Paulo</p>
+        <p><strong>Telefone:</strong> (11) 99999-9999</p>
+        <p><strong>Email:</strong> contato@cabraltonoli.com.br</p>
+        <p><strong>Horário:</strong> Seg - Sex: 8h às 18h</p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2025 Maurício Cabral & Thelma Tonoli. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    // Mobile menu toggle
+    function toggleMenu() {
+        const navMenu = document.getElementById('navMenu');
+        const hamburger = document.querySelector('.hamburger');
+
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    }
+
+    function closeMenu() {
+        const navMenu = document.getElementById('navMenu');
+        const hamburger = document.querySelector('.hamburger');
+
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    document.querySelectorAll('.project-card, .service-card, .section-title').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Navbar background on scroll
+    let ticking = false;
+
+    function updateNavbar() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(0, 0, 0, 0.98)';
+        } else {
+            navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+        }
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateNavbar);
+            ticking = true;
+        }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const navMenu = document.getElementById('navMenu');
+        const hamburger = document.querySelector('.hamburger');
+        const navContainer = document.querySelector('.nav-container');
+
+        if (!navContainer.contains(e.target) && navMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    // Prevent scroll when mobile menu is open
+    const navMenu = document.getElementById('navMenu');
+    const observer2 = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'class') {
+                if (navMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+    });
+
+    observer2.observe(navMenu, { attributes: true });
+
+    // Optimize images loading
+    const images = document.querySelectorAll('.project-image, .about-image');
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+            }
+        });
+    });
+
+    images.forEach(img => {
+        imageObserver.observe(img);
+    });
+</script>
+</body>
+</html>
