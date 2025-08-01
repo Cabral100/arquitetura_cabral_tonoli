@@ -160,17 +160,24 @@
 
         .hero h1 {
             font-size: 2.5rem;
-            font-weight: 300;
+            font-weight: 400;
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            letter-spacing: -1px;
+            letter-spacing: 2px;
         }
 
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 0.5;
+            letter-spacing: 2px;
+        }
         .hero-names {
             font-weight: 600;
             display: block;
             margin-top: 1rem;
-            font-size: 1.8rem;
+            font-size: 2.8rem;
         }
 
         .hero p {
@@ -241,9 +248,10 @@
         .about-content {
             display: flex;
             flex-direction: column;
-            gap: 3rem;
-            align-items: center;
-            margin-top: 2rem;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
         .about-text {
@@ -260,21 +268,22 @@
 
         .about-text .highlight {
             color: #ff6b35;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .about-image {
             position: relative;
             overflow: hidden;
             border-radius: 0;
-            height: 500px;
+            height: 400px;
             width: 100%;
-            max-width: 400px;
             background: url('sobrenos_arq.jpg');
             background-size: cover;
             background-position: center;
             order: 1;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
+
 
         /* Mobile-First Projects Grid */
         .projects-grid {
@@ -329,7 +338,7 @@
         }
 
         .project-card:nth-child(5) .project-image {
-            background-image: url('res4.jpg');
+            background-image: url('deco.jpg');
         }
 
         .project-card:nth-child(6) .project-image {
@@ -338,7 +347,7 @@
 
 
         .project-card:nth-child(7) .project-image {
-            background-image: url('res5.jpg');
+            background-image: url('res14.jpg');
         }
         .project-card:nth-child(8) .project-image {
             background-image: url('sala1.jpg');
@@ -350,7 +359,7 @@
             background-image: url('res6.jpg');
         }
         .project-card:nth-child(11) .project-image {
-            background-image: url('res7.jpg');
+            background-image: url('res13.jpg');
         }
         .project-card:nth-child(12) .project-image {
             background-image: url('lazer1.jpg');
@@ -585,18 +594,23 @@
 
             .about-content {
                 flex-direction: row;
+                align-items: center;
                 gap: 4rem;
+                padding: 0 2rem;
             }
 
             .about-text {
-                order: 1;
                 flex: 1;
+                order: 1;
+                font-size: 1.1rem;
+                padding-right: 2rem;
             }
 
             .about-image {
-                order: 2;
                 flex: 1;
-                height: 400px;
+                order: 2;
+                height: 500px;
+                max-width: none;
             }
 
             .contact-buttons {
@@ -665,8 +679,12 @@
                 gap: 6rem;
             }
 
+            .about-text {
+                font-size: 1.2rem;
+            }
+
             .about-image {
-                height: 500px;
+                height: 600px;
             }
 
             .contact-buttons {
@@ -750,7 +768,9 @@
             .hero h1 {
                 font-size: 2rem;
             }
-
+            .hero h2{
+                font-size: 1.5rem;
+            }
             .hero-names {
                 font-size: 1.5rem;
             }
@@ -793,15 +813,17 @@
     <div class="hero-content">
         <div class="hero-subtitle">Portfólio</div>
         <h1>
-            ARQUITETURA
             <span class="hero-names">CABRAL<br>E<br>TONOLI</span>
         </h1>
+        <br>
+        <h2> ARQUITETURA </h2>
+        <br>
         <p>Criamos espaços únicos que combinam funcionalidade, estética e inovação. Mais de 30 anos de experiência em arquitetura marcante e contemporânea.</p>
         <a href="#projects" class="cta-button">Ver Projetos</a>
     </div>
 </section>
 
-<!-- About -->
+<!-- About Section -->
 <section id="about" class="section section-white">
     <h2 class="section-title">Sobre Nós</h2>
     <div class="about-content">
