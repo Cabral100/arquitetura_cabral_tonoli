@@ -157,30 +157,17 @@
             background: #ff6b35;
         }
 
-        /* Enhanced Hero Section */
+        /* Simplified Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('capa.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: url('capa.jpg') no-repeat center center / cover;
+            background-color: #000000; /* Fallback to prevent blue flash */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
-            background-color: #000000; /* Fallback to prevent blue flash */
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
         }
 
         .hero-content {
@@ -792,7 +779,7 @@
             .hero-names { font-size: 1.5rem; }
             .section-title { font-size: 2rem; }
             .floating-whatsapp { bottom: 15px; right: 15px; width: 50px; height: 50px; }
-            .floating-whatsapp i { font-size: 1.2rem; }
+            .floating-whatsapp i { font-size: 1.5rem; }
             .contact-btn { width: 50px; height: 50px; }
             .contact-btn i { font-size: 1.5rem; }
         }
@@ -1080,19 +1067,6 @@
     document.querySelectorAll('.about-text, .about-image').forEach(el => {
         observer.observe(el);
     });
-
-    // Parallax effect for hero section
-    function parallaxEffect() {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        const rate = scrolled * -0.5;
-
-        if (hero) {
-            hero.style.transform = `translateY(${rate}px)`;
-        }
-    }
-
-    window.addEventListener('scroll', parallaxEffect, { passive: true });
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
