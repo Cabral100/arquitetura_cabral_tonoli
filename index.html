@@ -6,6 +6,8 @@
     <title>Maurício Cabral & Thelma Tonoli - Arquitetura & Interiores</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="capa.jpg" as="image">
+    <link rel="preload" href="sobrenos_arq.jpg" as="image">
     <style>
         * {
             margin: 0;
@@ -168,6 +170,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            background-color: #000000; /* Fallback to prevent blue flash */
         }
 
         .hero::before {
@@ -404,9 +407,7 @@
             border-radius: 0;
             height: 600px;
             width: 100%;
-            background: url('sobrenos_arq.jpg');
-            background-size: cover;
-            background-position: center;
+            background: url('sobrenos_arq.jpg') no-repeat center center / cover;
             order: 1;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             opacity: 0;
@@ -596,7 +597,7 @@
 
         .contact-buttons {
             display: flex;
-            gap: 3rem;
+            gap: 2rem;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -604,64 +605,33 @@
         .contact-btn {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1.5rem 3rem;
-            background: transparent;
-            color: #333333;
-            text-decoration: none;
-            border: 2px solid #ff6b35;
-            border-radius: 0;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            min-width: 220px;
             justify-content: center;
-            letter-spacing: 0.5px;
+            width: 60px;
+            height: 60px;
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .contact-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            transition: left 0.4s ease;
-            z-index: -1;
-        }
-
-        .contact-btn.whatsapp::before {
+        .contact-btn.whatsapp {
             background: linear-gradient(45deg, #25D366, #20b358);
-            text-decoration: none;
         }
 
-        .contact-btn.instagram::before {
+        .contact-btn.instagram {
             background: linear-gradient(45deg, #E4405F, #fd1d1d, #fcb045);
         }
 
-        .contact-btn:hover::before {
-            left: 0;
-        }
-
         .contact-btn:hover {
-            color: #ffffff;
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-btn.whatsapp:hover {
-            border-color: #25D366;
-            text-decoration: none;
-        }
-
-        .contact-btn.instagram:hover {
-            border-color: #E4405F;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         .contact-btn i {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
+            color: #ffffff;
             transition: transform 0.3s ease;
         }
 
@@ -749,7 +719,6 @@
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
             z-index: 1000;
             transition: all 0.3s ease;
-            text-decoration: none;
             animation: pulse 2s infinite;
         }
 
@@ -760,7 +729,7 @@
 
         .floating-whatsapp i {
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
         }
 
         @keyframes pulse {
@@ -824,6 +793,8 @@
             .section-title { font-size: 2rem; }
             .floating-whatsapp { bottom: 15px; right: 15px; width: 50px; height: 50px; }
             .floating-whatsapp i { font-size: 1.2rem; }
+            .contact-btn { width: 50px; height: 50px; }
+            .contact-btn i { font-size: 1.5rem; }
         }
 
         /* Smooth scroll */
@@ -993,11 +964,9 @@
         <div class="contact-buttons">
             <a href="https://wa.me/5511997579061?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20de%20arquitetura." class="contact-btn whatsapp" target="_blank">
                 <i class="fab fa-whatsapp"></i>
-                WhatsApp
             </a>
             <a href="https://www.instagram.com/arquiteturacabraletonoli/" class="contact-btn instagram" target="_blank">
                 <i class="fab fa-instagram"></i>
-                Instagram
             </a>
         </div>
     </div>
@@ -1200,7 +1169,28 @@
     // Preload critical images
     const criticalImages = [
         'capa.jpg',
-        'sobrenos_arq.jpg'
+        'sobrenos_arq.jpg',
+        'res1.jpg',
+        'pisc.jpg',
+        'res2.jpg',
+        'res3.jpg',
+        'deco.jpg',
+        'ban1.jpg',
+        'res14.jpg',
+        'sala1.jpg',
+        'sala2.jpg',
+        'res6.jpg',
+        'res13.jpg',
+        'lazer1.jpg',
+        'jantar.jpg',
+        'lazer2.jpg',
+        'res8.jpg',
+        'res9.jpg',
+        'res10.jpg',
+        'res11.jpg',
+        'res12.jpg',
+        'sala.jpg',
+        'salas.jpg'
     ];
 
     criticalImages.forEach(src => {
