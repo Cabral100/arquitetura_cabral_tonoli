@@ -22,6 +22,10 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+        
+        html {
+            overflow-x: hidden;
+        }
 
         /* Enhanced Navigation with transparency */
         .navbar {
@@ -184,10 +188,11 @@
         .hero-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
             z-index: 2;
             width: 100%;
             animation: heroFadeIn 1.2s ease-out;
+            padding-top: 5rem; /* MODIFICATION: Added padding-top to push content down */
         }
 
         @keyframes heroFadeIn {
@@ -202,17 +207,17 @@
         }
 
         .hero-title {
-            font-size: 4rem;
+            font-size: 2.3rem; /* MODIFICATION: Further reduced base font size */
             font-weight: 300;
-            line-height: 1.1;
-            letter-spacing: 2px;
+            line-height: 1.2; 
+            letter-spacing: 1px; 
             margin-bottom: 2rem;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
             animation: slideInUp 0.8s ease-out 0.5s both;
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem; 
             color: #ffffff;
             font-weight: 400;
             letter-spacing: 1px;
@@ -224,7 +229,7 @@
 
         .cta-buttons {
             display: flex;
-            flex-direction: column;
+            flex-direction: row; 
             gap: 1rem;
             margin-top: 3rem;
             animation: slideInUp 0.8s ease-out 0.9s both;
@@ -244,19 +249,20 @@
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 2.5rem;
+            padding: 0.6rem 1rem; 
             background: transparent;
             color: #ffffff;
             text-decoration: none;
             border: 2px solid #ffffff;
-            border-radius: 0;
+            border-radius: 5px; 
             font-weight: 400;
-            font-size: 0.9rem;
+            font-size: 0.8rem; 
             letter-spacing: 1px;
             text-transform: uppercase;
             position: relative;
-            width: 100%;
+            flex: 1; 
             text-align: center;
+            transition: all 0.3s ease;
         }
 
         .cta-button.primary {
@@ -269,6 +275,19 @@
             background: transparent;
             color: #ffffff;
             border-color: #ffffff;
+        }
+
+        /* Hover effects for buttons */
+        .cta-button.primary:hover {
+            background: transparent;
+            color: #ffffff;
+            border-color: #ff6b35;
+        }
+
+        .cta-button.secondary:hover {
+            background: #ff6b35;
+            color: #000000;
+            border-color: #ff6b35;
         }
 
         /* Enhanced Sections */
@@ -323,7 +342,7 @@
         /* Enhanced About Section */
         .about-content {
             display: flex;
-            flex-direction: column;
+            flex-direction: column; 
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -335,7 +354,6 @@
             color: #666666;
             line-height: 1.8;
             font-weight: 300;
-            order: 2;
             opacity: 0;
             transform: translateX(-50px);
             transition: all 0.8s ease;
@@ -371,10 +389,9 @@
             position: relative;
             overflow: hidden;
             border-radius: 0;
-            height: 600px;
             width: 100%;
-            background: url('sobrenos_arq.jpg') no-repeat center center / cover;
-            order: 1;
+            height: 400px; 
+            background: url('sobre_arq.png') no-repeat center center / cover;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             opacity: 0;
             transform: translateX(50px);
@@ -708,16 +725,21 @@
         @media (min-width: 768px) {
             .nav-container { padding: 0 2rem; }
             .logo { font-size: 1.4rem; }
-            .hero-title { font-size: 5rem; }
+            .hero-title { font-size: 3.2rem; } /* MODIFICATION: Reduced for tablets */
             .hero-subtitle { font-size: 1.3rem; }
-            .hero-content { padding: 0 3rem; }
+            .hero-content { padding: 0 3rem; padding-top: 5rem; }
             .section { padding: 5rem 2rem; }
             .section-title { font-size: 3rem; }
             .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
             .services-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
-            .about-content { flex-direction: row; align-items: center; gap: 4rem; padding: 0 2rem; }
-            .about-text { flex: 1; order: 1; font-size: 1.1rem; padding-right: 2rem; }
-            .about-image { flex: 1; order: 2; height: 500px; max-width: none; }
+            .about-content {
+                flex-direction: row; 
+                align-items: stretch; 
+                gap: 4rem; 
+                padding: 0 2rem;
+            }
+            .about-text { flex: 1; font-size: 1.1rem; padding-right: 2rem; }
+            .about-image { flex: 1; height: auto; } 
             .contact-buttons { flex-direction: row; max-width: none; gap: 2rem; }
             .cta-buttons {
                 flex-direction: row;
@@ -726,7 +748,8 @@
             }
             .cta-button {
                 width: auto;
-                padding: 1rem 2.5rem;
+                flex: none; 
+                padding: 0.8rem 2rem; 
             }
         }
 
@@ -735,85 +758,16 @@
             .nav-menu { position: static; width: auto; height: auto; background: transparent; backdrop-filter: none; flex-direction: row; justify-content: flex-end; gap: 3rem; }
             .nav-link { font-size: 0.95rem; }
             .hamburger { display: none; }
-            .hero-title { font-size: 6rem; }
+            .hero-title { font-size: 3.8rem; } /* MODIFICATION: Reduced for large desktops */
             .hero-subtitle { font-size: 1.5rem; }
-            .hero-content { padding: 0 4rem; }
+            .hero-content { padding: 0 4rem; padding-top: 5rem; }
             .section { padding: 6rem 3rem; }
             .section-title { font-size: 3.5rem; }
             .projects-grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
             .services-grid { grid-template-columns: repeat(4, 1fr); gap: 3rem; }
             .about-content { gap: 6rem; }
             .about-text { font-size: 1.2rem; }
-            .about-image { height: 600px; }
             .contact-buttons { gap: 3rem; }
-        }
-
-        @media (max-width: 767px) {
-            .hero-title {
-                font-size: 2.8rem;
-                line-height: 1.2;
-            }
-            .hero-subtitle {
-                font-size: 1rem;
-                line-height: 1.5;
-            }
-            .cta-buttons {
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-            }
-            .cta-button {
-                width: 100%;
-                padding: 1rem 2rem;
-                font-size: 0.85rem;
-            }
-            .hero-content {
-                padding: 0 1.5rem;
-            }
-            .back-to-top {
-                right: 80px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content { padding: 0 1rem; }
-            .section { padding: 3rem 0.5rem; }
-            .nav-container { padding: 0 0.5rem; }
-            .hero-title {
-                font-size: 2.2rem;
-                line-height: 1.2;
-                margin-bottom: 1.5rem;
-            }
-            .hero-subtitle {
-                font-size: 0.9rem;
-                margin-bottom: 2rem;
-                line-height: 1.5;
-            }
-            .section-title { font-size: 2rem; }
-            .floating-whatsapp { bottom: 15px; right: 15px; width: 50px; height: 50px; }
-            .floating-whatsapp i { font-size: 1.5rem; }
-            .contact-btn { width: 50px; height: 50px; }
-            .contact-btn i { font-size: 1.5rem; }
-            .back-to-top { bottom: 15px; right: 75px; width: 40px; height: 40px; }
-            .back-to-top i { font-size: 1.2rem; }
-            .cta-buttons {
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-                margin-top: 2rem;
-            }
-            .cta-button {
-                width: 100%;
-                padding: 0.9rem 1.5rem;
-                font-size: 0.8rem;
-                letter-spacing: 0.5px;
-            }
-            .hero-subtitle br {
-                display: none;
-            }
-            .hero-title br {
-                display: block;
-            }
         }
 
         /* Smooth scroll */
@@ -833,7 +787,6 @@
     </style>
 </head>
 <body>
-<!-- Navigation -->
 <nav class="navbar" id="navbar">
     <div class="nav-container">
         <a href="#home" class="logo">
@@ -855,19 +808,17 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
 <section id="home" class="hero">
     <div class="hero-content">
-        <h1 class="hero-title">Projetando o<br>Futuro da<br>Arquitetura</h1>
-        <p class="hero-subtitle">Criamos espaços únicos que combinam inovação, sustentabilidade<br>e design contemporâneo para transformar sua visão em realidade.</p>
+        <h1 class="hero-title">Transformando arquitetura em bem-estar,<br> criando espaços que inspiram o viver.</h1>
+        <p class="hero-subtitle">Criamos espaços únicos que combinam inovação, sustentabilidade e design contemporâneo para transformar sua visão em realidade.</p>
         <div class="cta-buttons">
             <a href="#projects" class="cta-button primary">Nossos Projetos</a>
-            <a href="#contact" class="cta-button secondary">Fale Conosco</a>
+            <a href="https://wa.me/5511997579061?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20de%20arquitetura." target="_blank" class="cta-button secondary">Fale Conosco</a>
         </div>
     </div>
 </section>
 
-<!-- About Section -->
 <section id="about" class="section section-white">
     <h2 class="section-title">Sobre Nós</h2>
     <div class="about-content">
@@ -882,7 +833,6 @@
     </div>
 </section>
 
-<!-- Projects -->
 <section id="projects" class="section">
     <h2 class="section-title">Nossos Projetos</h2>
 
@@ -953,7 +903,6 @@
     </div>
 </section>
 
-<!-- Services -->
 <section id="services" class="section section-white">
     <h2 class="section-title">Nossos Serviços</h2>
     <div class="services-grid">
@@ -976,7 +925,6 @@
     </div>
 </section>
 
-<!-- Contato -->
 <section id="contact" class="section section-white">
     <h2 class="section-title">Entre em Contato</h2>
     <div class="contact-content">
@@ -997,17 +945,14 @@
     </div>
 </section>
 
-<!-- Floating WhatsApp Button -->
 <a href="https://wa.me/5511997579061?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20de%20arquitetura." class="floating-whatsapp" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
-<!-- Back to Top Button -->
 <a href="#home" class="back-to-top" id="backToTop">
     <i class="fas fa-arrow-up"></i>
 </a>
 
-<!-- Footer -->
 <footer class="footer">
     <div class="footer-content">
         <p>&copy; 2025 Maurício Cabral & Thelma Tonoli. Todos os direitos reservados.</p>
